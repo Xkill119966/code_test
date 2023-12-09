@@ -32,12 +32,12 @@ function App() {
       .then((result) => {
         navigate(`/success?token=${result?.token}`);
       })
-      .catch((error) => setError(error));
+      .catch((error) => setError(error.message));
   };
   return (
     <div className="flex items-center justify-center h-screen bg-gradient-to-r from-green-400 to-blue-500 ">
       <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Servey Form</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-center">Survey Form</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4 border-b border-teal-500 py-2">
             <input
@@ -96,6 +96,14 @@ function App() {
             </button>
           </div>
         </form>
+        {error ? (
+          <div
+            className="p-4 mb-4 mt-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert"
+          >
+            <span className="font-medium">{error}</span>
+          </div>
+        ) : null}
       </div>
     </div>
   );
